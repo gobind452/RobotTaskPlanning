@@ -5,7 +5,7 @@ Objective: Gaining exposure to a virtual environment with a simulated robot agen
 ## API
 To execute a plan in the simulation environment you can use the following functions:
 * \[moveTo, object\] - moves robot close to object
-* \[changeWing, state\] - changes the robot gripper to specified state (up or home)
+* \[changeWing, state\] - changes the robot gripper to specified state (up or down)
 * \[pick, object\] - picks the specified object
 * \[drop, destination\] - drops a grabbed object to destination object
 * \[changeState, object, state\] - changes the state of an object (open or close)
