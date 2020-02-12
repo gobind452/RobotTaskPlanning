@@ -1,9 +1,8 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
-*.py[cod]
-*$py.class
 husky_ur5.py
 src/*.py
+planner.pyc
 
 
 # C extensions
