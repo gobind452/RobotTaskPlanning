@@ -1,2 +1,2 @@
 # COL864-Task-Planning
-Assignment for Special Topics in AI (Robotics) - COL864 course at IITD
+Assignment for the COL864 - Special topics in AI (Robotics) course at IITD

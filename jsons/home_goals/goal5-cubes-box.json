@@ -1,0 +1,33 @@
+{
+	"goals":[
+		{
+			"object": "cube_red",
+			"target": "box",
+			"state": "",
+			"position": "",
+			"tolerance": 0
+		},
+		{
+			"object": "cube_green",
+			"target": "box",
+			"state": "",
+			"position": "",
+			"tolerance": 0
+		},
+		{
+			"object": "cube_gray",
+			"target": "box",
+			"state": "",
+			"position": "",
+			"tolerance": 0
+		},
+		{
+			"object": "box",
+			"target": "",
+			"state": "",
+			"position": "cupboard",
+			"tolerance": 2
+		}
+	],
+	"text": "Put all the cubes inside the box and push box close to cupboard."
+}

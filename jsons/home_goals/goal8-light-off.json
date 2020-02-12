@@ -1,0 +1,12 @@
+{
+	"goals":[
+		{
+			"object": "light",
+			"target": "",
+			"state": "",
+			"position": "",
+			"tolerance": 0
+		}
+	],
+	"text": "Remove the light from the room."
+}
