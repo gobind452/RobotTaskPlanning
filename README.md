@@ -10,6 +10,7 @@ To execute a plan in the simulation environment you can use the following functi
 * \[drop, destination\] - drops a grabbed object to destination object
 * \[changeState, object, state\] - changes the state of an object (open or close)
 * \[pushTo, object, destination\] - pushes object close to the desitnation object
+
 A  plan is a list of the above mentioned functions with objects in the set - (apple, orange, banana, table, table2, box, cupboard, tray)
 
 
