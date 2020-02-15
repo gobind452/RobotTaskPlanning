@@ -35,6 +35,8 @@ You are expected to build a planner for robots in diverse environments with comp
 
 The default goal in the simulator is to put all fruits in the fridge (and keep the fridge closed).
 
+Hint: You can use different search techniques like BFS, DFS, A*, or Reinforcement learning based approaches or even model it as Constrained Satisfaction Problem
+
 
 ## Setup
 To setup the PyBullet (physics engine) environment please run the following (assuming python3):
