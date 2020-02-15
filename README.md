@@ -6,7 +6,7 @@ Objective: Gaining exposure to a virtual environment with a simulated robot agen
 The simulation is based on PyBullet simulator with a husky robot and UR5 manipulator arm. The robot can preform simple actions like move, pick, drop, open/close doors and push objects. 
 
 <div align="center">
-<img src="https://github.com/shreshthtuli/COL864-Task-Planning/blob/masterscreenshot.png" width="700" align="middle">
+<img src="https://github.com/shreshthtuli/COL864-Task-Planning/blob/master/screenshot.png" width="700" align="middle">
 </div>
 
 ## State representation
