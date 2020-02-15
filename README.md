@@ -43,3 +43,9 @@ To run a plan with the given API and visualize on the simulator run the followin
 ```
 python planner.py --world jsons/home_worlds/world_home0.json
 ```
+
+## Testing
+Your planner would be tested for different goals and different world scenes.
+
+## Developer
+[Shreshth Tuli](www.github.com/shreshthtuli)
