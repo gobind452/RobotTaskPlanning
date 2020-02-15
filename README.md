@@ -5,7 +5,7 @@ Objective: Gaining exposure to a virtual environment with a simulated robot agen
 ## Simulation Environment
 The simulation is based on PyBullet simulator with a husky robot and UR5 manipulator arm. The robot can preform simple actions like move, pick, drop, open/close doors and push objects. 
 
-## State representaiton
+## State representation
 A state is a python dictionary of the form: 
 ```
 {'grabbed': '', 'fridge': 'Close', 'inside': [], 'on': [], 'close': []}
