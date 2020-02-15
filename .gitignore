@@ -3,8 +3,10 @@ __pycache__/
 husky_ur5.py
 src/*.py
 planner.pyc
-environment-working.py
-planner-working.py
+environment_working.py
+environment_working.pyc
+planner_working.py
+planner_working.pyc
 
 
 # C extensions
