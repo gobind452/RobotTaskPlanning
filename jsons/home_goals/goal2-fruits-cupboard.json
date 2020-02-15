@@ -1,30 +1,30 @@
 {
 	"goals":[
 		{
-			"object": "cube_red",
-			"target": "cupboard",
+			"object": "apple",
+			"target": "fridge",
 			"state": "",
 			"position": "",
 			"tolerance": 1.5
 		},
 		{
-			"object": "cube_green",
-			"target": "cupboard",
+			"object": "orange",
+			"target": "fridge",
 			"state": "",
 			"position": "",
 			"tolerance": 1.5
 		},
 		{
-			"object": "cube_gray",
-			"target": "cupboard",
+			"object": "banana",
+			"target": "fridge",
 			"state": "",
 			"position": "",
 			"tolerance": 1.5
 		},
 		{
-			"object": "cupboard",
+			"object": "fridge",
 			"target": "",
-			"state": "open",
+			"state": "close",
 			"position": "",
 			"tolerance": 0
 		}
