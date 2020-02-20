@@ -50,7 +50,7 @@ pip install -r requirements.txt
 ## Run
 To run a plan with the given API and visualize on the simulator run the following command:
 ```
-python planner.py --world jsons/home_worlds/world_home0.json -- goal jsons/home_goals/goal0.json
+python planner.py --world jsons/home_worlds/world_home0.json --goal jsons/home_goals/goal0.json
 ```
 
 ## Grading
@@ -61,7 +61,7 @@ Your planner would be tested for different goals and different world scenes. The
 4. *getPlan()* function returns correct plan for goal2 - Put apple in fridge. (10 points)
 5. *getPlan()* function returns correct plan for goal3 - Put fruits in fridge and keep fridge closed. (15 points)
 6. *getPlan()* function takes less than half the deadline time (60 seconds) for each goal mentioned above. (10 points)
-7. *getPlan()* function returns correct plan for other worlds 1 and 2 as well. (15 points)
+7. *getPlan()* function returns correct plan for goal3 on other worlds 1 and 2 as well. (15 points)
 7. TBA. (15 points)
 
 Note: The grading policy is subject to change without notice.
