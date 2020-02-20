@@ -2,7 +2,6 @@ from environment import *
 
 def getPlan():
 	return [["moveTo", "fridge"], \
-			   ["changeWing", "up"], \
 			   ["changeState", "fridge", "open"], \
 			   ["moveTo", "apple"], \
 			   ["pick", "apple"], \
