@@ -6,15 +6,15 @@ def getPlan():
 			   ["moveTo", "apple"], \
 			   ["pick", "apple"], \
 			   ["moveTo", "fridge"], \
-			   ["dropTo", "fridge"], \
+			   ["drop", "fridge"], \
 			   ["moveTo", "orange"], \
 			   ["pick", "orange"], \
 			   ["moveTo", "fridge"], \
-			   ["dropTo", "fridge"], \
+			   ["drop", "fridge"], \
 			   ["moveTo", "banana"], \
 			   ["pick", "banana"], \
 			   ["moveTo", "fridge"], \
-			   ["dropTo", "fridge"], \
+			   ["drop", "fridge"], \
 			   ["changeState", "fridge", "close"], \
 			   ]
 
