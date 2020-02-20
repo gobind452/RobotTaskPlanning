@@ -4,8 +4,8 @@ from copy import deepcopy
 state = getCurrentState()
 print(state)
 
-objects = ['apple', 'orange', 'banana', 'table', 'table2', 'box', 'fridge', 'tray', 'tray2']
-enclosures = ['fridge']
+objects = ['apple', 'orange', 'banana', 'table', 'table2', 'box', 'fridge', 'tray', 'tray2', 'cupboard']
+enclosures = ['fridge', 'cupboard']
 actions = ['moveTo', 'pick', 'drop', 'changeState', 'pushTo']
 
 # A checker for action feasibility

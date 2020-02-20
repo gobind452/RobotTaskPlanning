@@ -1,5 +1,6 @@
 from environment import *
 
+@deadline(120)
 def getPlan():
 	return [["moveTo", "fridge"], \
 			   ["changeState", "fridge", "open"], \

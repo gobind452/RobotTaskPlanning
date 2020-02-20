@@ -1,33 +1,26 @@
 {
 	"goals":[
 		{
-			"object": "cube_red",
+			"object": "apple",
 			"target": "box",
 			"state": "",
 			"position": "",
 			"tolerance": 0
 		},
 		{
-			"object": "cube_green",
+			"object": "orange",
 			"target": "box",
 			"state": "",
 			"position": "",
 			"tolerance": 0
 		},
 		{
-			"object": "cube_gray",
+			"object": "banana",
 			"target": "box",
 			"state": "",
 			"position": "",
 			"tolerance": 0
-		},
-		{
-			"object": "box",
-			"target": "",
-			"state": "",
-			"position": "cupboard",
-			"tolerance": 2
 		}
 	],
-	"text": "Put all the cubes inside the box and push box close to cupboard."
+	"text": "Put fruits in box."
 }
