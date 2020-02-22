@@ -21,7 +21,7 @@ To setup the PyBullet (physics engine) environment please run the following (ass
 pip install -r requirements.txt
 ```
 
-TODO: Link to some video showing the robot executing some actions in the scene. 
+A sample task execution on this simulator can be seen [here](https://youtu.be/-mIQuM3kjF4)
 
 ### World State 
 The world state at any time instant can be accessed as a python dictionary of the form: 
@@ -36,7 +36,7 @@ Here, the symbols denote the following:
 * state\['on'\] - consists of pairs of objects (a,b) where object a is on top of object b
 * state\['close'\] - list of objects close to the robot
 
-TODO: Need to say that they can set the initial state for their testing ...
+You can set the initial state of the simulator as per different world scenes encoded in JSON format in directory *jsons/home_worlds/*. You can even create new world scenes for testing.
 
 ### Agent Actions
 The robot can preform simple actions like move, pick, drop, open/close doors and push objects. To simulate a plan in the simulation environment you may use the following functions:
@@ -91,10 +91,10 @@ Your planner would be tested for different goals and different world scenes. The
 7. TBA. (15 points)
 Note: The grading policy is subject to change without notice.
 -->
-TODO: Tentative grading policy.
+Tentative grading policy (TBA).
 
 
 ## Developer
-This exercise is based on the simulation tool developed as part of an undergraduate project at CSE, IITD led by 
+This exercise is based on the simulation tool developed as part of an undergraduate project at Dept. of CSE, IITD led by 
 [Shreshth Tuli](www.github.com/shreshthtuli).
 Shreshth will be the guest teaching assistant for this homework. 
