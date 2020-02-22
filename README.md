@@ -1,21 +1,40 @@
-# COL864-Task-Planning
-Assignment for the COL864 - Special topics in AI (Robotics) course at IITD.
-Objective: Gaining exposure to a virtual environment with a simulated robot agent that can interact with objects in the scene. Formulating and solving a symbolic planning problem. 
+# COL864: Homework II
+## Overview
+This exercise concerns writing a symbolic planner for an agent (mobile manipulator) 
+capable of interacting with objects in a virtual environment. 
+The robot can perform a set of actions (move to, pick, place on, push to, open/close) 
+which are described below. 
+We assume a discrete world representation where the environment can be represented 
+as a set of objects. 
+The robot can move towards a given object or peform interactions 
+with it. 
+Some objects in the scene can have symbolic states. For example, a cupboard 
+can be open or closed. 
+We can assume that the robot can determine if an object is open or closed, 
+if an object is inside or on top of an object or if it is close to an object 
+of interest. 
+Note that the agent does not know the semantics of when actions are applicable 
+and what are their effects. Hence, cannot perform tasks such as moving an object 
+to a goal location that requires chaining of actions. 
+Hence, your objective is enable the robot with a 
+task planner allowing it to perform tasks that require reasoning over a sequence of objects.  
 
-## Simulation Environment
-The simulation is based on PyBullet simulator with a husky robot and UR5 manipulator arm. The robot can preform simple actions like move, pick, drop, open/close doors and push objects. The simulator consists of 10 world scenes and 5 different goals. 
-
+## Simulation Environment and Agent Representation
+### Virtual Environment 
+The simulation is based on PyBullet simulator with a mobile manipulator (called Husky robot with a manipulator arm. 
+The simulator consists of 10 world scenes and 5 different goals. 
+A screenshot of the simulator appears below:
 <div align="center">
 <img src="https://github.com/shreshthtuli/COL864-Task-Planning/blob/master/screenshot.png" width="700" align="middle">
 </div>
-
 Note: All actions are symbolic and robot position is discretized by proximity to objects.
 
-## State representation
-A state is a python dictionary of the form: 
+### World State 
+The world state at any time instant is a python dictionary of the form: 
 ```
 {'grabbed': '', 'fridge': 'Close', 'cupboard': 'Close', 'inside': [], 'on': [], 'close': []}
 ```
+Here, the symbols denote the following:
 * state\['grabbed'\] - object currently grabbed by the robot
 * state\['fridge'\] - fridge state in (Open/Close)
 * state\['cupboard'\] - cupboard state in (Open/Close)
@@ -23,15 +42,19 @@ A state is a python dictionary of the form:
 * state\['on'\] - consists of pairs of objects (a,b) where object a is on top of object b
 * state\['close'\] - list of objects close to the robot
 
-## Action types
-To execute a plan in the simulation environment you can use the following functions:
+### Action types
+The robot can preform simple actions like move, pick, drop, open/close doors and push objects. 
+To simulate a plan in the simulation environment you may use the following functions:
 * \[moveTo, object\] - moves robot close to object
 * \[pick, object\] - picks the specified object
 * \[drop, destination\] - drops a grabbed object to destination object
 * \[changeState, object, state\] - changes the state of an object (open or close)
 * \[pushTo, object, destination\] - pushes object close to the destination object
 
-A  plan is a sequence (python list) of the above mentioned actions with objects in the set - (apple, orange, banana, table, table2, box, fridge, tray, tray2). You can input a plan to the *execute()* function which outputs a pair (plan success, final state after plan execution).
+A  plan is a sequence (python list) of the afore mentioned actions with objects 
+in the set - (apple, orange, banana, table, table2, box, fridge, tray, tray2). 
+
+You can input a plan to the *execute()* function which outputs a pair (plan success, final state after plan execution).
 
 ## Problem Statement
 You are expected to build a planner for robots in diverse environments with complex interactions. You need to develop an approximate environment model which is able to change the state corresponding to an input action with action feasibility checking. The environment model needs to be implemented in *changeState()* and *checkAction()* functions in *environment.py* file. A standard goal checking function has been implemented as *checkGoal()* function in the same file. The planner should be implemented in the *getPlan()* function in *planner.py* file.
