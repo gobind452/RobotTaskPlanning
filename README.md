@@ -57,7 +57,7 @@ The goal of this exercise is to write a symbolic planner enabling the agent to p
  A standard goal checking function has been implemented as *checkGoal()* function. The planner should be implemented in the *getPlan()* function in *planner.py* file. You may visualize the plan in the simulator with the instructions below. The default goal in the given code is to put all fruits in the fridge (and keep the fridge closed). 
 * Formally write down the domain representation and the planning algorithm. Implement implement a forward and a backward planning strategy. Please compare the running time, branching factor and explain the advantages or disadvantages of both. 
 * Next, improve the planner to synthesize plans in a short amount of time. For example, return a feasible plan under 60 seconds. You may explore techniques for 
-improving search building off material in the class and exploring techniques from your reading. There is extra credit for this part of the homework. 
+accelerating search ( e.g., via heuristics) building off material in the class and exploring techniques from your reading. There is extra credit for this part of the homework. 
 
 <!-- You are expected to build a planner for robots in diverse environments with complex interactions. You need to develop an approximate environment model which is able to change the state corresponding to an input action with action feasibility checking. The environment model needs to be implemented in *changeState()* and *checkAction()* functions in *environment.py* file. A standard goal checking function has been implemented as *checkGoal()* function in the same file. The planner should be implemented in the *getPlan()* function in *planner.py* file.
 
