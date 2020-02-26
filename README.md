@@ -71,14 +71,15 @@ Hint: You can use different search techniques like BFS, DFS, A*, or Reinforcemen
 
 ## Evaluation
 1. Correct implementation of *changeState()* and *checkAction()* functions for different types of actions and the ability to handle 
-varied world states. 
-2. Plan generation for the example goals with the *getPlan()* function such as
+varied world states. (15 points)
+2. Plan generation for the example goals with the *getPlan()* function (on world0) such as (30 points)
  	*  Put apple on table.
  	*  Put fruits: apple, orange and banana in box.
  	*  Put apple in fridge.
  	*  Put fruits in fridge and keep fridge closed. 
-3. Evaluation of accelerated plan search for the scenarios such as the above. 
-4. Explanation of search strategy implemented in this exercise. 
+3. Evaluation of accelerated plan search for the scenarios such as the above. (20 points)
+4. Evaluation of planner robustness on other world scenes. (20 points)
+4. Explanation of search strategy implemented in this exercise. (15 points)
 <!--
 Your planner would be tested for different goals and different world scenes. The grading scheme would be as follows:
 1. Correct implementation of *changeState()* and *checkAction()* functions for different types of actions. (15 points)
