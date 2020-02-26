@@ -92,7 +92,6 @@ Your planner would be tested for different goals and different world scenes. The
 7. TBA. (15 points)
 Note: The grading policy is subject to change without notice.
 -->
-Tentative grading policy (TBA).
 
 
 ## Developer
