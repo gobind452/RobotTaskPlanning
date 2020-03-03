@@ -2,3 +2,4 @@ pybullet
 pillow
 scipy
 numpy
+attrdict
