@@ -2,6 +2,9 @@ from environment import *
 
 @deadline(120)
 def getPlan():
+	#######################################
+	######## Insert your code here ########
+	#######################################
 	return [["moveTo", "fridge"], \
 			   ["changeState", "fridge", "open"], \
 			   ["moveTo", "apple"], \
