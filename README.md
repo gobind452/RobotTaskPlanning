@@ -54,6 +54,14 @@ To run a plan with the given API and visualize on the simulator run the followin
 python planner.py --world jsons/home_worlds/world_home0.json --goal jsons/home_goals/goal0.json
 ```
 
+## Sample state,action sequence
+
+* t0 : {'grabbed': '', 'fridge': 'Close', 'cupboard': 'Close', 'inside': [], 'on': [], 'close': []}
+* action = \[moveTo, apple\] 
+* t1 = {'grabbed': '', 'fridge': 'Close', 'cupboard': 'Close', 'inside': [], 'on': [], 'close': \['apple'\]}
+* action = \[pick, apple\]
+* t2 = {'grabbed': 'apple', 'fridge': 'Close', 'cupboard': 'Close', 'inside': [], 'on': [], 'close': \['apple'\]}
+
 ## Problem Statement
 The goal of this exercise is to write a symbolic planner enabling the agent to perform a variety of tasks in the environment requiring navigation and interaction actions. 
 1. Please implement a model of actions in terms of when they are feasible and how actions can change the world state. The environment model needs to be implemented in *changeState()* and *checkAction()* functions in *environment.py* file.
@@ -84,6 +92,7 @@ varied world states. (15 points)
 
 ## Other Information
 * This assignment is to be done individually.
+* The simulator can be run on all machine configurations, however, dedicated GPU is preferable.
 
 <!--
 Your planner would be tested for different goals and different world scenes. The grading scheme would be as follows:
