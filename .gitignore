@@ -1,14 +1,7 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
-husky_ur5.py
-src/*.py
-planner.pyc
-environment.pyc
 environment_working.py
-environment_working.pyc
 planner_working.py
-planner_working.pyc
-
 
 # C extensions
 *.so
