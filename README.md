@@ -111,4 +111,4 @@ Note: The grading policy is subject to change without notice.
 ## Developer
 This exercise is based on the simulation tool developed as part of an undergraduate project at Dept. of CSE, IITD led by 
 [Shreshth Tuli](www.github.com/shreshthtuli).
-Shreshth will be the guest teaching assistant for this homework. 
+Shreshth will be the guest teaching assistant for this homework. He is reachable at cs1160680@cse.iitd.ac.in. 
