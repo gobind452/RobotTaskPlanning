@@ -11,8 +11,8 @@ import math
 import operator 
 import json
 from scipy.spatial import distance
-import matplotlib.pyplot as plt
-import matplotlib.animation as animation
+# import matplotlib.pyplot as plt
+# import matplotlib.animation as animation
 import time 
 import numpy as np
 import os
