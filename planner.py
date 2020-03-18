@@ -1,11 +1,12 @@
 from environment import *
 
-@deadline(120)
+#@deadline(120)
 def getPlan():
 	#######################################
 	######## Insert your code here ########
 	#######################################
-	return [["moveTo", "fridge"], \
+	return [["moveTo", "stick"]]
+	''' \
 			   ["changeState", "fridge", "open"], \
 			   ["moveTo", "apple"], \
 			   ["pick", "apple"], \
@@ -20,11 +21,10 @@ def getPlan():
 			   ["moveTo", "fridge"], \
 			   ["drop", "fridge"], \
 			   ["changeState", "fridge", "close"], \
-			   ]
+			   ]'''
 
 # Execute function takes in a plan as input and returns if goal constraints 
 # are valid and the final state after plan execution
 res, state = execute(getPlan())
-
 print(res)
 print(state)
