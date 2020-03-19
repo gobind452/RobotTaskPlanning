@@ -53,6 +53,7 @@ To run a plan with the given API and visualize on the simulator run the followin
 ```
 python planner.py --world jsons/home_worlds/world_home0.json --goal jsons/home_goals/goal0.json
 ```
+Note: If you have a system that does not have a dedicated GPU or want to run on server or HPC with no graphics capabilities, you can add the option *--display tp* to the above command.
 
 ## Sample state,action sequence
 
