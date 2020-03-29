@@ -232,7 +232,7 @@ def executeHelper(actions, goal_file=None):
 				if checkUR5constrained(constraints) and actions[action_index][1] == 'ur5':
 					raise Exception("Gripper is not free, can not hold object")
 				if actions[action_index][1] == grabbed:
-					raise Exception("Cant place object on itself")
+					raise Exception("Cant place object on itself "+actions[action_index][1])
 				if actions[action_index][1] in enclosures and isClosed(actions[action_index][1], states, id_lookup):
 					raise Exception("Enclosure is closed, can not place object inside")
 				if not actions[action_index][1] in ['table', 'table2', 'box', 'fridge', 'tray', 'tray2']:
@@ -261,7 +261,7 @@ def executeHelper(actions, goal_file=None):
 				if checkUR5constrained(constraints) and actions[action_index][2] == 'ur5':
 					raise Exception("Gripper is not free, can not hold object")
 				if actions[action_index][1] in ['fridge', 'table', 'table2'] and actions[action_index][2] == 'ur5':
-					raise Exception("Can not pick "+actions[action_index[1]])
+					raise Exception("Can not pick "+ actions[action_index][1])
 				if actions[action_index][2] == actions[action_index][1]:
 					raise Exception("Cant place object on itself")
 				if (checkInside(constraints, states, id_lookup, actions[action_index][1], enclosures) 

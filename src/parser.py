@@ -22,7 +22,7 @@ def initParser():
     parser.add_argument('--display',
                             type=str,
                             required=False,
-                            default=None,
+                            default="tp",
                             help='Display states on matplotlib animation')
     parser.add_argument('--speed',
                             type=float,
@@ -34,5 +34,10 @@ def initParser():
                             required=False,
                             default='./jsons/home_goals/goal2-fruits-cupboard.json',
                             help='Path of goal file')
+    parser.add_argument('--symbolic',
+                            type=str,
+                            required=False,
+                            default="no",
+                            help='Symbolic vs Simulator')
     return parser.parse_args()
  
