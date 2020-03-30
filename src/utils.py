@@ -419,7 +419,7 @@ def checkIn(obj1, obj2, obj1G, obj2G, metrics, constraints):
         (x1, y1, z1) = metrics[obj1][0]
         (x2, y2, z2) = metrics[obj2][0]
         (l, w, h) = obj2G['size']
-        inside = abs(x2-x1) < l and abs(y2-y1) < 1.5*w and abs(z1-z2) < h
+        inside = abs(x2-x1) < l and abs(y2-y1) < 1.5*w and abs(z1-z2) < h and z1 >= 0.1
         tgt = findConstraintTo(obj1, constraints)
         while not (tgt == "" or tgt == obj2):
             tgt = findConstraintTo(tgt, constraints)        
