@@ -274,7 +274,7 @@ def executeHelper(actions, goal_file=None):
               waiting = True
 
           elif(actions[action_index][0] == "checkClose"):
-            if objDistance("husky", actions[action_index][1], id_lookup) > tolerances[actions[action_index][1]] + 0.1:
+            if objDistance("husky", actions[action_index][1], id_lookup) > 2:
                 raise Exception("Object too far away, move closer to it")
             done = True
 
