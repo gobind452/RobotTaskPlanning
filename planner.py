@@ -133,8 +133,7 @@ class Planner(object):
 
 #@deadline(120)
 def getPlan(planner):
-	return []
-	#return planner.searchForPlan()
+	return planner.searchForPlan()
 	
 if args.symbolic == "yes":
 	env = Environment(args)
@@ -146,5 +145,5 @@ else:
 	planner = Planner(env)
 	plan = getPlan(planner)
 	res, state = execute(plan)
-	print(res,"Goal satisfied")
+	print(res,"Goal")
 	print(state)

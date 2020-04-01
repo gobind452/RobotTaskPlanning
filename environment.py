@@ -6,7 +6,6 @@ from src.parser import *
 
 state = husky_ur5.getCurrentState() # Get initial states
 args = initParser()
-print(state)
 
 if args.symbolic == "yes":
 	husky_ur5.destroy() # Destroy the GUI for now
