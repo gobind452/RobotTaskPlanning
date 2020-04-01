@@ -1,0 +1,47 @@
+{
+	"goals":[
+		{
+			"object": "apple",
+			"target": "box",
+			"state": "",
+			"position": "",
+			"tolerance": 1.5
+		},
+		{
+			"object": "apple",
+			"target": "tray",
+			"state": "",
+			"position": "",
+			"tolerance": 1.5
+		},
+		{
+			"object": "tray",
+			"target": "box",
+			"state": "",
+			"position": "",
+			"tolerance": 1.5
+		},
+				{
+			"object": "orange",
+			"target": "box",
+			"state": "",
+			"position": "",
+			"tolerance": 1.5
+		},
+		{
+			"object": "banana",
+			"target": "tray2",
+			"state": "",
+			"position": "",
+			"tolerance": 1.5
+		},
+		{
+			"object": "box",
+			"target": "fridge",
+			"state": "",
+			"position": "",
+			"tolerance": 1.5
+		}
+	],
+	"text": "Put all the fruits inside the fridge and keep fridge closed."
+}

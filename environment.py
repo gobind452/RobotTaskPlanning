@@ -15,11 +15,14 @@ objects = set(['apple', 'orange', 'banana', 'table', 'table2', 'box', 'fridge', 
 enclosures = set(['fridge', 'cupboard']) # Can be open or closed
 canContain = set(['fridge','cupboard','box']) # Can contain objects (In predicate)
 canSupport = set(['table','table2','tray','tray2']) # Can support objects (On predicate)
-actionTemplates = ['moveTo', 'pick', 'drop', 'changeState', 'pushTo'] 
-canPlaced = set(['apple','orange','banana','tray','tray2']) # Can be placed in or on
+actionTemplates = ['moveTo', 'pick', 'drop', 'changeState', 'pushTo','transfer'] 
+canPlaced = set(['apple','orange','banana','tray','tray2','box']) # Can be placed in or on
 cantPick = set(['fridge','cupboard','table','table2']) # Cant pick these objects
+constraints = set([('box','tray'),('box','tray2')])
+
 actionGroundings = set()
 goalBasedActionGroundings = set()
+transferActionGroundings = set()
 
 class Environment(object):
 	def __init__(self,args):
@@ -30,7 +33,6 @@ class Environment(object):
 		self.currState = {'grabbed':state['grabbed'],'fridge':state['fridge'].lower(),'cupboard':state['cupboard'].lower(),'close':set(state['close'])}
 		self.currState['inside'] = dict([(e,set()) for e in canContain])
 		self.currState['on'] = dict([(e,set()) for e in canSupport])
-		self.currState['near'] = dict([(e,set()) for e in objects])
 		for rel in state['inside']:
 			self.currState['inside'][rel[1]].add(rel[0])
 		for rel in state['on']:
@@ -51,11 +53,7 @@ class Environment(object):
 				self.goal.append((obj,target,"on"))
 
 	def checkAction(self,state, action):
-		if action[0] == "moveTo":
-			if action[1] in state['close']:
-				return False # If object is already close, cant take this action
-		
-		elif action[0] == "pick":
+		if action[0] == "pick":
 			if action[1] not in state['close']:
 				return False # First get close to the object
 			if action[1] in cantPick:
@@ -75,6 +73,8 @@ class Environment(object):
 			if action[1] in enclosures:
 				if state[action[1]].lower() == "close":
 					return False # First open enclosure
+			if (state['grabbed'],action[1]) in constraints:
+				return False
 		
 		elif action[0] == "changeState":
 			if state['grabbed']!= "":
@@ -95,8 +95,26 @@ class Environment(object):
 				return False # Destination is start
 			if action[1] in cantPick: # Cant pick this object
 				return False
-			if action[2] in state['near'][action[1]]: # Object is already close to destination
+		
+		elif action[0] == "transfer":
+			if action[2] not in canContain and action[2] not in canSupport:
 				return False
+			if (action[1],action[2]) in constraints:
+				return False
+			if action[1] not in canPlaced:
+				return False
+			if state["grabbed"] != "":
+				return False
+			if action[2] in enclosures and state[action[2]].lower() == "close":
+				return False
+			if action[1] == action[2]:
+				return False
+			if action[2] in canSupport:
+				if action[1] in state['on'][action[2]]:
+					return False
+			elif action[2] in canContain:
+				if action[1] in state['inside'][action[2]]:
+					return False
 
 		return True
 
@@ -161,6 +179,12 @@ class Environment(object):
 			state = self.changeState(state,["moveTo",action[2]]) # Move to destination
 			state['grabbed'] = "" # Leave object here
 
+		elif action[0] == "transfer":
+			state = self.changeState(state,["moveTo",action[1]])
+			state = self.changeState(state,["pick",action[1]])
+			state = self.changeState(state,["moveTo",action[2]])
+			state = self.changeState(state,["drop",action[2]])
+
 		return state
 
 	def buildActionGroundings(self):
@@ -182,41 +206,46 @@ class Environment(object):
 					continue
 				actionGroundings.add(("pushTo",obj,obj1))
 		global goalBasedActionGroundings
-		relevantObjects = set()
+		self.relevantObjects = set()
 		for predicate in self.goal:
 			if predicate[-1] == "is":
-				relevantObjects.add(predicate[0].lower())
+				self.relevantObjects.add(predicate[0].lower())
 			else:
-				relevantObjects.add(predicate[0])
-				relevantObjects.add(predicate[1])
+				self.relevantObjects.add(predicate[0])
+				self.relevantObjects.add(predicate[1])
 		firstOrderRelevantObjects = set()
 		for obj in canContain:
 			for obj1 in self.currState['inside'][obj]:
-				if obj1 in relevantObjects:
+				if obj1 in self.relevantObjects:
 					firstOrderRelevantObjects.add(obj)
 		for obj in canSupport:
 			for obj1 in self.currState['on'][obj]:
-				if obj1 in relevantObjects:
+				if obj1 in self.relevantObjects:
 					firstOrderRelevantObjects.add(obj)
-		relevantObjects = relevantObjects.union(firstOrderRelevantObjects)
-		del firstOrderRelevantObjects
-		for obj in relevantObjects:
+		self.relevantObjects = self.relevantObjects.union(firstOrderRelevantObjects)
+		for obj in self.relevantObjects:
 			goalBasedActionGroundings.add(("moveTo",obj))
-		for obj in relevantObjects-cantPick:
+		for obj in self.relevantObjects-cantPick:
 			goalBasedActionGroundings.add(("pick",obj))
-		for obj in relevantObjects.intersection(canSupport):
+		for obj in self.relevantObjects.intersection(canSupport):
 			goalBasedActionGroundings.add(("drop",obj))
-		for obj in relevantObjects.intersection(canContain):
+		for obj in self.relevantObjects.intersection(canContain):
 			goalBasedActionGroundings.add(("drop",obj))
-		for obj in relevantObjects.intersection(enclosures):
+		for obj in self.relevantObjects.intersection(enclosures):
 			goalBasedActionGroundings.add(("changeState",obj,"open"))
 			goalBasedActionGroundings.add(("changeState",obj,"close"))
-		for obj in relevantObjects-cantPick:
-			for obj1 in relevantObjects:
+		for obj in self.relevantObjects-cantPick:
+			for obj1 in self.relevantObjects:
 				if obj == obj1 :
 					continue
 				goalBasedActionGroundings.add(("pushTo",obj,obj1))
-		
+		for obj in self.relevantObjects-firstOrderRelevantObjects:
+			for obj1 in self.relevantObjects-firstOrderRelevantObjects:
+				if obj == obj1:
+					continue
+				transferActionGroundings.add(("transfer",obj,obj1))
+		del firstOrderRelevantObjects
+
 
 	def getApplicableActions(self,state,eliminate=False):
 		applicableActions = list()
@@ -228,14 +257,16 @@ class Environment(object):
 			for action in goalBasedActionGroundings:
 				if self.checkAction(state,list(action)) == True:
 					applicableActions.append(action)
-		elif eliminate == "aggressive": # Remove the pushTo action
-			for action in goalBasedActionGroundings:
-				if self.checkAction(state,list(action)) == True and action[0] != "pushTo":
+		elif eliminate == "aggressive": # Only the transfer action
+			for action in transferActionGroundings:
+				if self.checkAction(state,list(action)) == True:
 					applicableActions.append(action)
 		return applicableActions
 		
-	def checkGoal(self,state):
+	def checkGoal(self,state,ignore=False):
 		for predicate in self.goal:
+			if predicate[-1] == "is" and ignore == True:
+				continue
 			check = self.checkPredicate(state,predicate)
 			if check == False:
 				return False
@@ -248,3 +279,12 @@ class Environment(object):
 			return predicate[0] in state["inside"][predicate[1]]
 		else:
 			return predicate[0] in state["on"][predicate[1]]
+
+	def canBePlaced(self,obj1,obj2):
+		if obj1 not in canPlaced:
+			return False
+		if obj2 not in canSupport and obj2 not in canContain:
+			return False
+		if (obj1,obj2) in constraints:
+			return False
+		return True
