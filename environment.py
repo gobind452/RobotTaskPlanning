@@ -1,15 +1,11 @@
 from copy import deepcopy
 import husky_ur5
-import symbolic_utils
 import json
 from src.parser import *
 
 state = husky_ur5.getCurrentState() # Get initial states
 args = initParser()
 print(state)
-
-if args.symbolic == "yes":
-	husky_ur5.destroy() # Destroy the GUI for now
 
 objects = set(['apple', 'orange', 'banana', 'table', 'table2', 'box', 'fridge', 'tray', 'tray2', 'cupboard'])
 enclosures = set(['fridge', 'cupboard']) # Can be open or closed
@@ -116,6 +112,12 @@ class Environment(object):
 					return False
 			elif action[2] in canContain:
 				if action[1] in state['inside'][action[2]]:
+					return False
+			if action[1] in canSupport:
+				if action[2] in state['on'][action[1]]:
+					return False
+			elif action[1] in canContain:
+				if action[2] in state['inside'][action[1]]:
 					return False
 
 		return True
@@ -421,7 +423,7 @@ class Environment(object):
 				if obj1 in self.relevantObjects:
 					firstOrderRelevantObjects.add(obj)
 		self.relevantObjects = self.relevantObjects.union(firstOrderRelevantObjects)
-		
+
 		for obj in self.relevantObjects:
 			goalBasedActionGroundings.add(("moveTo",obj))
 		for obj in self.relevantObjects-cantPick:
@@ -445,6 +447,7 @@ class Environment(object):
 				if obj == obj1:
 					continue
 				transferActionGroundings.add(("transfer",obj,obj1))
+
 		del firstOrderRelevantObjects
 		global dropThisActionGroundings
 		for obj in self.relevantObjects.intersection(canPlaced):

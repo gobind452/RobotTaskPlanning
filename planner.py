@@ -4,8 +4,7 @@ from husky_ur5 import execute
 import gc
 
 args = initParser()
-
-plannerType = "backward"
+plannerType = "forward"
 
 class ForwardPlanner(object):
 	def __init__(self,env):
@@ -30,7 +29,12 @@ class ForwardPlanner(object):
 					continue
 				stop = False
 				parent = ""
-				if "tray" in self.parents[obj]: # Tray, tray2 and box are the only objects that can be intermediate
+				if "tray" in self.parents[obj] and "tray2" in self.parents[obj]: # Tray, tray2 and box are the only objects that can be intermediate
+					if "tray" in self.parents["tray2"]:
+						parent = "tray2"
+					else:
+						parent = "tray"
+				elif "tray" in self.parents[obj]:
 					parent = "tray"
 				elif "tray2" in self.parents[obj]:
 					parent = "tray2"
@@ -97,13 +101,22 @@ class ForwardPlanner(object):
 			actionsTaken.extend([["moveTo","fridge"],["changeState","fridge","open"]])
 		if 'cupboard' in self.env.relevantObjects and state['cupboard'] == "close":
 			actionsTaken.extend([["moveTo","cupboard"],["changeState","cupboard","open"]])
+		for predicate in self.env.goal:
+			if predicate[-1] == "on":
+				if (predicate[0] == "tray" and predicate[1] == "tray2") or (predicate[0] == "tray2" and predicate[1] == "tray"):
+					if predicate[1] in state['on'][predicate[0]]:
+						if predicate[0] not in state['on']["table"]:
+							add = "table"
+						elif predicate[0] not in state["on"]["table2"]:
+							add = "table2"
+						actionsTaken.append(["transfer",predicate[1],add])
+						break
 		for action in actionsTaken:
 			state = self.env.changeState(state,action)
 		stack.append(state)
 		initLength = len(actionsTaken)
 		goalDone = False
 		while len(stack)!=0:
-			print(stack)
 			if env.checkGoal(stack[-1],ignore=True) == True:
 				goalDone = True
 				break
@@ -252,22 +265,15 @@ class BackwardPlanner(object):
 
 #@deadline(120)
 def getPlan(planner):
-	#return [["moveTo","apple"],["pushTo","apple","tray"]]
 	return planner.searchForPlan()
 	
-if args.symbolic == "yes":
-	env = Environment(args)
-	if plannerType == "forward":
-		planner = ForwardPlanner(env)
-	else:
-		planner = BackwardPlanner(env)
-	plan = getPlan(planner)
-	print(plan)
-
-else:
-	env = Environment(args)
+env = Environment(args)
+if plannerType == "forward":
 	planner = ForwardPlanner(env)
-	plan = getPlan(planner)
-	res, state = execute(plan)
-	print(res,"Goal")
-	print(state)
+else:
+	planner = BackwardPlanner(env)
+plan = getPlan(planner)
+print(plan)
+res, state = execute(plan)
+print(res)
+print(state)
