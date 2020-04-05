@@ -1,10 +1,9 @@
 from copy import deepcopy
 import husky_ur5
 import json
-from src.parser import *
+from husky_ur5 import *
 
 state = husky_ur5.getCurrentState() # Get initial states
-args = initParser()
 print(state)
 
 objects = set(['apple', 'orange', 'banana', 'table', 'table2', 'box', 'fridge', 'tray', 'tray2', 'cupboard'])

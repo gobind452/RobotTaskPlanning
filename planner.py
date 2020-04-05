@@ -1,4 +1,4 @@
-from environment import Environment
+from environment import *
 from src.parser import *
 from husky_ur5 import execute
 import gc
@@ -262,8 +262,7 @@ class BackwardPlanner(object):
 			actionsTaken[i] = list(actionsTaken[i])
 		return actionsTaken
 		
-
-#@deadline(120)
+@deadline(120)
 def getPlan(planner):
 	return planner.searchForPlan()
 	
