@@ -252,7 +252,7 @@ def executeHelper(actions, goal_file=None):
               if (actions[action_index][1] in enclosures
                   and isClosed(actions[action_index][1], states, id_lookup)):
                   raise Exception("Enclosure is closed, can not place object inside")
-              if not actions[action_index][1] in ['table', 'table2', 'box', 'fridge', 'tray', 'tray2','cupboard']:
+              if not actions[action_index][1] in ['table', 'table2', 'box', 'fridge', 'tray', 'tray2', 'cupboard']:
                   raise Exception('Target object should be a surface or enclosure')
               if ("mop" in grabbed 
                   or "sponge" in grabbed 
