@@ -2,13 +2,6 @@
 	"goals":[
 		{
 			"object": "apple",
-			"target": "box",
-			"state": "",
-			"position": "",
-			"tolerance": 1.5
-		},
-		{
-			"object": "apple",
 			"target": "tray",
 			"state": "",
 			"position": "",
