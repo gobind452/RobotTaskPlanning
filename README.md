@@ -1,4 +1,3 @@
-# COL864: Homework II
 ## Overview
 * This exercise concerns writing a symbolic planner for an agent (mobile manipulator) capable of interacting with objects in a virtual environment. 
 * The robot in the virtual environment is capable of performing a set of actions (move to, pick, place on, push to, open/close) which are described below. 
@@ -63,55 +62,16 @@ Note: If you have a system that does not have a dedicated GPU or want to run on 
 * action = \[pick, apple\]
 * t2 = {'grabbed': 'apple', 'fridge': 'Close', 'cupboard': 'Close', 'inside': [], 'on': [], 'close': \['apple'\]}
 
-## Problem Statement
-The goal of this exercise is to write a symbolic planner enabling the agent to perform a variety of tasks in the environment requiring navigation and interaction actions. 
-1. Please implement a model of actions in terms of when they are feasible and how actions can change the world state. The environment model needs to be implemented in *changeState()* and *checkAction()* functions in *environment.py* file.
-2. Implement a planner that can synthesize a feasible plan consisting of a sequence of actions to attain the goal state given the initial state of the world. 
- A standard goal checking function has been implemented as *checkGoal()* function. The planner should be implemented in the *getPlan()* function in *planner.py* file. You may visualize the plan in the simulator with the instructions below. The default goal in the given code is to put all fruits in the fridge (and keep the fridge closed). 
-3. Formally write down the domain representation and the planning algorithm. Implement implement a forward and a backward planning strategy. Please compare the running time, branching factor and explain the advantages or disadvantages of both. 
-4. Please improve the planner to synthesize feasible plans in a short amount of time. For example, return a feasible plan under 60 seconds. You may explore techniques for accelerating search ( e.g., via heuristics) building off material in the class and exploring techniques from your reading. There is extra credit for this part of the homework. 
+## Environment.py
 
-You may review class notes and the Artificial Intelligence: A Modern Approach (AIMA) Chapter on Classical Planning for this exercise.  
-<!-- You are expected to build a planner for robots in diverse environments with complex interactions. You need to develop an approximate environment model which is able to change the state corresponding to an input action with action feasibility checking. The environment model needs to be implemented in *changeState()* and *checkAction()* functions in *environment.py* file. A standard goal checking function has been implemented as *checkGoal()* function in the same file. The planner should be implemented in the *getPlan()* function in *planner.py* file.
+The environment.py models all the state action transitions which are permitted in this simulation. It also contains function for getting applicable actions (i.e actions that can be taken at a particular state) and relevant actions (i.e actions that could have been take to reach a particular state) as a function of the state. The applicable actions are used for forward planning, and the relevant actions are used for the backward planning from the goal. 
 
-The default goal in the given code is to put all fruits in the fridge (and keep the fridge closed).
+## Planner.py
 
-Hint: You can use different search techniques like BFS, DFS, A*, or Reinforcement learning based approaches or even model it as Constrained Satisfaction Problem
--->
-
-## Evaluation and tentative marking scheme
-1. Correct implementation of *changeState()* and *checkAction()* functions for different types of actions and the ability to handle 
-varied world states. (15 points)
-2. Plan generation for the example goals with the *getPlan()* function (on world0) such as (30 points)
- 	*  Put apple on table.
- 	*  Put fruits: apple, orange and banana in box.
- 	*  Put apple in fridge.
- 	*  Put fruits in fridge and keep fridge closed. 
-3. Evaluation of accelerated plan search for the scenarios such as the above. (20 points)
-4. Evaluation of planner robustness on other world scenes. (20 points)
-5. Explanation of search strategy implemented in this exercise. (15 points)
-
-## Other Information
-* This assignment is to be done individually.
-* The simulator can be run on all machine configurations, however, dedicated GPU is preferable.
-
-<!--
-Your planner would be tested for different goals and different world scenes. The grading scheme would be as follows:
-1. Correct implementation of *changeState()* and *checkAction()* functions for different types of actions. (15 points)
-2. *getPlan()* function returns correct plan for goal0 - Put apple on table. (10 points)
-3. *getPlan()* function returns correct plan for goal1 - Put fruits: apple, orange and banana in box. (10 points)
-4. *getPlan()* function returns correct plan for goal2 - Put apple in fridge. (10 points)
-5. *getPlan()* function returns correct plan for goal3 - Put fruits in fridge and keep fridge closed. (15 points)
-6. *getPlan()* function takes less than half the deadline time (60 seconds) for each goal mentioned above. (10 points)
-7. *getPlan()* function returns correct plan for goal3 on other worlds 1 and 2 as well. (15 points)
-7. TBA. (15 points)
-Note: The grading policy is subject to change without notice.
--->
-
+The planner.py contains two classes : ForwardPlanner and BackwardPlanner. Given a set of predicates which are true in the initial state, and a set of predicates which define a goal, the planners find a sequence of actions which could help reach the robot the goal from the initial state. It also uses various heuristics to prune the search space for plans. 
 
 ## Developer
 This exercise is based on the simulation tool developed as part of an undergraduate project at Dept. of CSE, IITD led by 
-[Shreshth Tuli](www.github.com/shreshthtuli).
+[Shreshth Tuli](www.github.com/shreshthtuli). This exercise was given as a part of the course Learning for Robotics (COL864) at IITD under Prof Rohan Paul.
 <br>
-Shreshth will be the guest teaching assistant for this homework. He is reachable at shreshth.cs116@cse.iitd.ac.in. 
-
+The solution (planner.py and environment.py) was implemented by [Gobind Singh](www.github.com/gobind452)
